@@ -1,6 +1,7 @@
 {
   "name": "fire-grid",
   "version": "0.1.0",
+  "homepage": "https://eduardo-dangelo.github.io/fire-grid",
   "private": true,
   "dependencies": {
     "@types/jest": "^24.0.15",
@@ -15,6 +16,8 @@
     "typescript": "^3.5.3"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
