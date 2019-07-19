@@ -1,68 +1,98 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Fire Grid
+> A basic grid system using [flex-box](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 
-## Available Scripts
+### Components
+- Container
+- Row
+- Col
+    
+### Import
+ 
+You can import any component individually:
+ 
+`import Row from './common/grid/Row';`
+ 
+or use multiple imports from the root folder:
+ 
+`import { Row, Col } from './common';`
 
-In the project directory, you can run:
+## Usage
+ 
+```
+<Container>
+  <Row>
+    <Col size={1/3}>
+      you code here...
+    </Col> 
+    <Col size={2/3}>
+      you code here too...
+    </Col> 
+  </Row>
+</Container>
+```
 
-### `npm start`
+## Components
+   
+### Container
+> Add a max-width of `1370px` and margin `auto` to center-align it self.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+##### Props:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Name | Type | Default Value | Example
+---------- | -------- | ------ | ----------
+`maxWidth` | `number` | `1370` | `<Container maxWidth={400}/>`
 
-### `npm test`
+### Row
+> Display `flex` and adds a marginX of `-12px` and margin-bottom of `24px`.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##### Props:
 
-### `npm run build`
+Name | Type | Default Value | Example
+---------- | -------- | ------ | ----------
+`alignItems` | `string` | `stretch` | [check guide for available values](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
+`justifyContent` | `string` | `stretch` | [check guide for available values](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Col
+> Add a paddingX of `12px`.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+##### Props:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Name | Type | Default Value | Example
+---------- | -------- | ------ | ----------
+`size` | `number` or `object` | `auto (equal divided)` | `size={1}` `size={{ xs: 1, sm: 0.5 }}`
 
-### `npm run eject`
+#### Size:
+> By default `<Col/>` will be divided equally. Use `size={1}` for a full-width column or any fraction for 
+custom sizes. Ex: `size={0.5}` or `size={1 / 2}` for a half size column.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+##### Breakpoints:
+> There is 5 breakpoint for Col size. You can use by just declaring the breakpoints as an object. 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+>Ex: `<Col size={{ md: 1, lg: 0.5 }}/>`
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+xs | sm |  md | lg | xl 
+--- | --- | --- | --- | ---
+0 (auto) | 540px | 720px | 960px | 1200px
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Extra
+> *It is NOT required to add a `<Container />` to use `<Row/>` & `<Col/>`*
 
-## Learn More
+> *It is required to add a `<Row />` to use `<Col/>`*
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+> *Avoid use numbers larger than `1` to define `<Col/>` sizes. Ex:*
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+###### Wrong:
+```
+<Row>
+  <Col size={2} />
+  <Col size={1} /> 
+</Row>
+```
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+###### Right:
+```
+<Row>
+  <Col size={1} />
+  <Col size={0.5} /> 
+</Row>
+```
